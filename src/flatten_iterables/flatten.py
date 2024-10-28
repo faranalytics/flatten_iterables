@@ -4,7 +4,7 @@ mappables = {dict}
 iterables = {list}
 
 
-def flatten(it=None) -> dict:
+def flatten(it=None) -> typing.Dict:
 
     global mappables, iterables
 
