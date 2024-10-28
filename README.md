@@ -28,7 +28,7 @@ In this example, an object named `data` will be flattened into a dictionary of r
 
 ```python
 import json
-from flatten_iterables import flatten, mappables, iterables
+import flatten_iterables as fi
 
 data = {
     "dict": {"a": 42},
@@ -42,7 +42,7 @@ data = {
     ...: 42,
 }
 
-print(json.dumps(flatten(data), indent=2))
+print(json.dumps(fi.flatten(data), indent=2))
 ```
 
 ```bash
@@ -53,6 +53,32 @@ print(json.dumps(flatten(data), indent=2))
   "['nested_dicts']['a0']['b1']": 23,
   "['nested_lists'][0][0]": 42,
   "[Ellipsis]": 42
+}
+```
+You can add iterables and mapables by referencing the `iterables` and `mappables` sets.
+```python
+import json
+import flatten_iterables as fi
+from collections import OrderedDict
+
+fi.iterables.add(set)
+fi.mappables.add(OrderedDict)
+
+data = {
+    "set": {23, 42, 57},
+    "ordered_dict": OrderedDict(a=23, b=42, c=57),
+}
+
+print(json.dumps(fi.flatten(data), indent=2))
+```
+```
+{
+  "['set'][0]": 57,
+  "['set'][1]": 42,
+  "['set'][2]": 23,
+  "['ordered_dict']['a']": 23,
+  "['ordered_dict']['b']": 42,
+  "['ordered_dict']['c']": 57
 }
 ```
 
