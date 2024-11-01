@@ -1,10 +1,18 @@
-import typing
+from typing import Any, Dict, Set, Literal, Iterable, Mapping, Union
 
-mappables = {dict}
-iterables = {list}
+mappables: Set[Mapping] = {dict}
+iterables: Set[Iterable] = {list}
 
+key_style: Literal["python", "js"] = "python"
 
-def flatten(it=None) -> typing.Dict:
+def _string_key(k:Any)->str:
+    global key_style
+    if key_style == "python":
+        return f"['{k}']"
+    elif key_style == "js":
+        return f".{k}"
+    
+def flatten(it: Union[Iterable, Mapping] = None) -> Dict:
 
     global mappables, iterables
 
@@ -14,7 +22,7 @@ def flatten(it=None) -> typing.Dict:
     ot = dict()
 
     if isinstance(it, _mappables):
-        stack = list((f"['{k}']", v) if isinstance(k, str) else (f"[{k}]", v) for k, v in it.items())[::-1]
+        stack = list((_string_key(k), v) if isinstance(k, str) else (f"[{k}]", v) for k, v in it.items())[::-1]
     elif isinstance(it, _iterables):
         stack = list((f"[{k}]", v) for k, v in enumerate(it))[::-1]
 
@@ -29,7 +37,7 @@ def flatten(it=None) -> typing.Dict:
                 ot[path] = value
             stack = (
                 stack
-                + list((f"{path}['{k}']", v) if isinstance(k, str) else (f"{path}[{k}]", v) for k, v in value.items())[
+                + list((f"{path}{_string_key(k)}", v) if isinstance(k, str) else (f"{path}[{k}]", v) for k, v in value.items())[
                     ::-1
                 ]
             )

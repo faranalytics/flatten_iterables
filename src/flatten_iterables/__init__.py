@@ -1,1 +1,1 @@
-from .flatten import flatten, mappables, iterables
+from . import fi
