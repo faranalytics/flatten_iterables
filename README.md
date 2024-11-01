@@ -1,19 +1,20 @@
-# Flatten Iterables
+# Flatten It
 
 ## Introduction
 
-Flatten Iterables uses iteration (no recursion) in order to flatten iterables into a dictionary where each key is a reference path and each value is the value at the respective path.
+Flatten It uses iteration (no recursion) to flatten iterables into a dictionary where each key is a reference path and each value is the value at the respective path.
 
 ## Features
 
 - Produces valid Python reference paths for string and numeric keys.
 - Raises `ValueError` on circular references.
-- Iterative algorithm; hence no call stack overflow.
+- Iterative algorithm; flatten deeply nested structures without causing a call stack overflow.
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [API](#api)
 - [Test](#test)
 
 ## <h2 id="installation">Installation</h2>
@@ -55,7 +56,11 @@ print(json.dumps(fi.flatten(data), indent=2))
   "[Ellipsis]": 42
 }
 ```
-You can add iterables and mapables by referencing the `iterables` and `mappables` sets.
+
+By default Flatten It will flatten structures that contain instances of `list` and `dict`. However, you can flatten stuctures containing other types of iterables and mapables by adding their respective types to the `iterables` and `mappables` sets.
+
+In this example example, a structure containing the types `set` and `OrderedDict` will be flattened.  The type `set` is added to the `iterables` set and the type `OrderedDict` is added to the `mappables` set.
+
 ```python
 import json
 import flatten_iterables as fi
@@ -71,6 +76,7 @@ data = {
 
 print(json.dumps(fi.flatten(data), indent=2))
 ```
+
 ```
 {
   "['set'][0]": 57,
@@ -81,23 +87,31 @@ print(json.dumps(fi.flatten(data), indent=2))
   "['ordered_dict']['c']": 57
 }
 ```
+## <h2 id="api">API<h2>
+**fi.flatten(it)**
+- it `Union[Iterable, Mapping]` The iterable or mapping to be flattened.
+
+**fi.key_style** `Literal["python", "js"]` Specify a key style. **Default:** `python`
+
+**fi.iterables** `Set[Iterables]` Add iterable candidates to this set. **Default:** `(list)`
+
+**fi.mappables** `Set[Mapping]` Add mappable candidates to this set. **Default:** `{dict}`
 
 ## <h2 id="test">Test</h2>
 
 Clone the repository.
-
 ```bash
 git clone https://github.com/faranalytics/flatten_iterables.git
 ```
-
 Change directory into the root of the repository.
-
 ```bash
 cd flatten_iterables
 ```
-
-Run the tests.
-
+Install the package in editable mode.
 ```bash
-python tests/test.py -v
+pip install -e .
+```
+Run the tests.
+```bash
+python -m unittest -v
 ```
