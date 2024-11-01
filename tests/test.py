@@ -1,7 +1,6 @@
 import unittest
 import json
-from flatten_iterables import flatten
-
+from flatten_iterables import fi
 
 class TestCase(unittest.TestCase):
 
@@ -19,15 +18,15 @@ class TestCase(unittest.TestCase):
         }
 
     def test_nested_dict(self) -> None:
-        flat = json.dumps(flatten(self.data["nested_dicts"]))
+        flat = json.dumps(fi.flatten(self.data["nested_dicts"]))
         self.assertEqual(flat, "{\"['a0']['b0']\": 42, \"['a0']['b1']\": 23}")
 
     def test_nested_list(self) -> None:
-        flat = json.dumps(flatten(self.data["nested_lists"]))
+        flat = json.dumps(fi.flatten(self.data["nested_lists"]))
         self.assertEqual(flat, '{"[0][0]": 42}')
 
     def test_reference_path_representation(self) -> None:
-        for k, v in flatten(self.data).items():
+        for k, v in fi.flatten(self.data).items():
             self.assertEqual(eval(f"{self.data}{k}"), v)
 
 
