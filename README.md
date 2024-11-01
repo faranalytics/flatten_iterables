@@ -57,9 +57,9 @@ print(json.dumps(fi.flatten(data), indent=2))
 }
 ```
 
-By default Flatten It will flatten structures that contain instances of `list` and `dict`. However, you can flatten stuctures containing other types of iterables and mapables by adding their respective types to the `iterables` and `mappables` sets.
+By default Flatten It will flatten structures that contain instances of `list` and `dict`. However, you can flatten stuctures containing other types of iterables and mappings by adding their respective types to the `iterables` and `mappables` sets.
 
-In this example example, a structure containing the types `set` and `OrderedDict` will be flattened. The type `set` is added to the `iterables` set and the type `OrderedDict` is added to the `mappables` set.
+In this example, a structure containing the types `set` and `OrderedDict` will be flattened. The type `set` is added to the `iterables` set and the type `OrderedDict` is added to the `mappables` set.
 
 ```python
 import json
