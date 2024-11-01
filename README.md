@@ -59,7 +59,7 @@ print(json.dumps(fi.flatten(data), indent=2))
 
 By default Flatten It will flatten structures that contain instances of `list` and `dict`. However, you can flatten stuctures containing other types of iterables and mapables by adding their respective types to the `iterables` and `mappables` sets.
 
-In this example example, a structure containing the types `set` and `OrderedDict` will be flattened.  The type `set` is added to the `iterables` set and the type `OrderedDict` is added to the `mappables` set.
+In this example example, a structure containing the types `set` and `OrderedDict` will be flattened. The type `set` is added to the `iterables` set and the type `OrderedDict` is added to the `mappables` set.
 
 ```python
 import json
@@ -87,8 +87,11 @@ print(json.dumps(fi.flatten(data), indent=2))
   "['ordered_dict']['c']": 57
 }
 ```
+
 ## <h2 id="api">API<h2>
+
 **fi.flatten(it)**
+
 - it `Union[Iterable, Mapping]` The iterable or mapping to be flattened.
 
 **fi.key_style** `Literal["python", "js"]` Specify a key style. **Default:** `python`
@@ -100,18 +103,25 @@ print(json.dumps(fi.flatten(data), indent=2))
 ## <h2 id="test">Test</h2>
 
 Clone the repository.
+
 ```bash
 git clone https://github.com/faranalytics/flatten_iterables.git
 ```
+
 Change directory into the root of the repository.
+
 ```bash
 cd flatten_iterables
 ```
+
 Install the package in editable mode.
+
 ```bash
 pip install -e .
 ```
+
 Run the tests.
+
 ```bash
 python -m unittest -v
 ```

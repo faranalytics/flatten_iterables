@@ -5,13 +5,15 @@ iterables: Set[Iterable] = {list}
 
 key_style: Literal["python", "js"] = "python"
 
-def _string_key(k:Any)->str:
+
+def _string_key(k: Any) -> str:
     global key_style
     if key_style == "python":
         return f"['{k}']"
     elif key_style == "js":
         return f".{k}"
-    
+
+
 def flatten(it: Union[Iterable, Mapping] = None) -> Dict:
 
     global mappables, iterables
@@ -37,9 +39,10 @@ def flatten(it: Union[Iterable, Mapping] = None) -> Dict:
                 ot[path] = value
             stack = (
                 stack
-                + list((f"{path}{_string_key(k)}", v) if isinstance(k, str) else (f"{path}[{k}]", v) for k, v in value.items())[
-                    ::-1
-                ]
+                + list(
+                    (f"{path}{_string_key(k)}", v) if isinstance(k, str) else (f"{path}[{k}]", v)
+                    for k, v in value.items()
+                )[::-1]
             )
         elif isinstance(value, _iterables):
             seen.append(value)

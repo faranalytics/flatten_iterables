@@ -2,6 +2,7 @@ import unittest
 import json
 from flatten_iterables import fi
 
+
 class TestCase(unittest.TestCase):
 
     def setUp(self) -> None:
