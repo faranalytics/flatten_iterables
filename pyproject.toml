@@ -8,7 +8,7 @@ dynamic = ["version"]
 authors = [
   { name="Adam Patterson", email="adam@farar.net" },
 ]
-description = ""
+description = "Flatten iterables and mappings into a dictionary of reference paths and values."
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
