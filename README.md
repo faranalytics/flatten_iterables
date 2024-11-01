@@ -96,7 +96,7 @@ print(json.dumps(fi.flatten(data), indent=2))
 
 **fi.key_style** `Literal["python", "js"]` Specify a key style. **Default:** `python`
 
-**fi.iterables** `Set[Iterables]` Add iterable candidates to this set. **Default:** `(list)`
+**fi.iterables** `Set[Iterables]` Add iterable candidates to this set. **Default:** `{list}`
 
 **fi.mappables** `Set[Mapping]` Add mappable candidates to this set. **Default:** `{dict}`
 
