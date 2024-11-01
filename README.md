@@ -6,7 +6,7 @@ Flatten It uses iteration (no recursion) to flatten iterables into a dictionary 
 
 ## Features
 
-- Produces valid Python reference paths for string and numeric keys.
+- Produces valid Python or JS reference paths for string and numeric keys.
 - Raises `ValueError` on circular references.
 - Iterative algorithm; flatten deeply nested structures without causing a call stack overflow.
 
