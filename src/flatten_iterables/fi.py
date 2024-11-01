@@ -6,7 +6,7 @@ iterables: Set[Iterable] = {list}
 key_style: Literal["python", "js"] = "python"
 
 
-def _string_key(k: Any) -> str:
+def _string_key(k: Union[str, int]) -> str:
     global key_style
     if key_style == "python":
         return f"['{k}']"
