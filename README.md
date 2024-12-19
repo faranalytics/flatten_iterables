@@ -29,17 +29,21 @@ In this example, an object named `data` will be flattened into a dictionary of r
 
 ```python
 import json
-import flatten_iterables as fi
+from flatten_iterables import fi
+
+fi.key_style = "python"
 
 data = {
     "dict": {"a": 42},
-    "list": [42],
     "nested_dicts": {"a0": {"b0": 42, "b1": 23}},
+    "empty_dict": {},
+    "list": [42],
     "nested_lists": [
         [
             42,
         ],
     ],
+    "empty_list": [],
     ...: 42,
 }
 
@@ -49,10 +53,12 @@ print(json.dumps(fi.flatten(data), indent=2))
 ```bash
 {
   "['dict']['a']": 42,
-  "['list'][0]": 42,
   "['nested_dicts']['a0']['b0']": 42,
   "['nested_dicts']['a0']['b1']": 23,
+  "['empty_dict']": {},
+  "['list'][0]": 42,
   "['nested_lists'][0][0]": 42,
+  "['empty_list']": [],
   "[Ellipsis]": 42
 }
 ```
@@ -63,7 +69,7 @@ In this example, a structure containing the types `set` and `OrderedDict` will b
 
 ```python
 import json
-import flatten_iterables as fi
+from flatten_iterables import fi
 from collections import OrderedDict
 
 fi.iterables.add(set)
