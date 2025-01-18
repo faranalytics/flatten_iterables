@@ -10,20 +10,20 @@ Flatten It uses iteration (no recursion) to flatten iterables into a dictionary 
 - Raises `ValueError` on circular references.
 - Iterative algorithm; flatten deeply nested structures without causing a call stack overflow.
 
-## Table of Contents
+## Table of contents
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [API](#api)
 - [Test](#test)
 
-## <h2 id="installation">Installation</h2>
+## Installation
 
 ```bash
 pip install flatten_iterables
 ```
 
-## <h2 id="usage">Usage</h2>
+## Usage
 
 In this example, an object named `data` will be flattened into a dictionary of reference paths and their respective values. The resulting dictionary will be dumped to a JSON string.
 
@@ -94,7 +94,7 @@ print(json.dumps(fi.flatten(data), indent=2))
 }
 ```
 
-## <h2 id="api">API<h2>
+## API
 
 **fi.flatten(it)**
 
@@ -106,27 +106,29 @@ print(json.dumps(fi.flatten(data), indent=2))
 
 **fi.mappables** `Set[Mapping]` Add mappable candidates to this set. **Default:** `{dict}`
 
-## <h2 id="test">Test</h2>
+## Test
 
-Clone the repository.
+### How to run the test
+
+#### Clone the repository.
 
 ```bash
 git clone https://github.com/faranalytics/flatten_iterables.git
 ```
 
-Change directory into the root of the repository.
+#### Change directory into the root of the repository.
 
 ```bash
 cd flatten_iterables
 ```
 
-Install the package in editable mode.
+#### Install the package in editable mode.
 
 ```bash
 pip install -e .
 ```
 
-Run the tests.
+#### Run the tests.
 
 ```bash
 python -m unittest -v
